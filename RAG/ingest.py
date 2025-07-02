@@ -18,7 +18,7 @@ load_dotenv()
 pdfs = ["../docs/Acad_Calendar_2025.pdf"]
 pdf_docs = []
 for pdf in pdfs:
-    pdf_docs.extend(PyMuPDFLoader(pdf).load())  # fixed 'file' → 'pdf'
+    pdf_docs.extend(PyMuPDFLoader(pdf).load())  
 
 # Web pages to ingest
 webs = [
@@ -49,7 +49,7 @@ client = weaviate.Client(
     url=os.getenv("WEAVIATE_URL"),
     auth_client_secret=weaviate.auth.AuthApiKey(api_key=os.getenv("WEAVIATE_API_KEY")),
 )
-print("✅ Client connection success")
+print(" Client connection success")
 
 # Step 5: Ensure class/schema exists 
 if "IITGDATA" not in [c["class"] for c in client.schema.get()["classes"]]:
@@ -60,7 +60,7 @@ if "IITGDATA" not in [c["class"] for c in client.schema.get()["classes"]]:
             {"name": "text", "dataType": ["text"]},
         ],
     })
-    print("✅ Schema 'IITGDATA' created")
+    print("Schema 'IITGDATA' created")
 
 #  Store into Weaviate vector DB 
 vectordb = Weaviate.from_documents(
@@ -72,4 +72,4 @@ vectordb = Weaviate.from_documents(
     by_text=False
 )
 
-print("✅ Ingestion was successful!")
+print(" Ingestion was successful!")
