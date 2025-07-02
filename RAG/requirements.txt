@@ -7,3 +7,4 @@ langchain-openai
 weaviate-client==3.26.7
 pydantic
 tiktoken
+sentence-transformers
