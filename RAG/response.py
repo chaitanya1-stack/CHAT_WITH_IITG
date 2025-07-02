@@ -5,6 +5,7 @@ from langchain_community.vectorstores import Weaviate
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
 from langchain_openai import ChatOpenAI
+
 from langchain.chains import RetrievalQA
 
 # Load environment variables
