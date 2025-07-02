@@ -7,13 +7,13 @@ import weaviate
 import os
 from dotenv import load_dotenv
 
-# Set custom USER_AGENT (optional warning fix)
+# Set custom USER_AGENT 
 os.environ["USER_AGENT"] = "iitg-chatbot/1.0"
 
-# Load secrets
-load_dotenv(dotenv_path="../.env")
 
-# --- Step 1: Load documents ---
+load_dotenv()
+
+#  Load documents
 
 pdfs = ["../docs/Acad_Calendar_2025.pdf"]
 pdf_docs = []
@@ -33,25 +33,25 @@ for url in webs:
 # Combine docs
 all_docs = pdf_docs + web_docs
 
-print("✅ Combine success")
+print(" Combine success")
 
-# --- Step 2: Split documents ---
+#  Split documents
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 chunks = splitter.split_documents(all_docs)
-print("✅ Splitting success")
+print("Splitting success")
 
-# --- Step 3: Create embeddings ---
+#  Create embeddings 
 embedder = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-print("✅ Embedding success")
+print("Embedding success")
 
-# --- Step 4: Connect to Weaviate v3 ---
+#  Connect to Weaviate v3
 client = weaviate.Client(
     url=os.getenv("WEAVIATE_URL"),
     auth_client_secret=weaviate.auth.AuthApiKey(api_key=os.getenv("WEAVIATE_API_KEY")),
 )
 print("✅ Client connection success")
 
-# --- Step 5: Ensure class/schema exists ---
+# Step 5: Ensure class/schema exists 
 if "IITGDATA" not in [c["class"] for c in client.schema.get()["classes"]]:
     client.schema.create_class({
         "class": "IITGDATA",
@@ -62,7 +62,7 @@ if "IITGDATA" not in [c["class"] for c in client.schema.get()["classes"]]:
     })
     print("✅ Schema 'IITGDATA' created")
 
-# --- Step 6: Store into Weaviate vector DB ---
+#  Store into Weaviate vector DB 
 vectordb = Weaviate.from_documents(
     documents=chunks,
     embedding=embedder,

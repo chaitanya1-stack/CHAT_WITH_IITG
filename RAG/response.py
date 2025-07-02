@@ -7,7 +7,7 @@ from langchain_openai import ChatOpenAI
 from langchain.chains import RetrievalQA
 
 # Load environment variables
-load_dotenv(dotenv_path="../.env")
+load_dotenv()
 
 # ✅ Connect to Weaviate v3
 client = weaviate.Client(
@@ -40,8 +40,9 @@ llm = ChatOpenAI(
 
 # ✅ RetrievalQA chain
 qa = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
+qa_chain = qa  # used for exporting this to rag server
 
-# ✅ CLI chatbot loop
+# ✅ CLI chatbot loop  i'll keep this for testing but there i rag server for exposing api 
 def main():
     print("Welcome to IITG Chatbot! Type 'exit' to quit.")
     while True:
