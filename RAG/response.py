@@ -2,7 +2,8 @@ import os
 from dotenv import load_dotenv
 import weaviate
 from langchain_community.vectorstores import Weaviate
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
 from langchain_openai import ChatOpenAI
 from langchain.chains import RetrievalQA
 
