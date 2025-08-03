@@ -27,20 +27,35 @@ const Chatbot = () => {
 
 
 
-      <h2>IITG Chatbot</h2>
-      <input
+      <div className="header">IITG Chatbot</div>
+    
+     
+      <div >
+        {loading ? <p>Loading...</p> : <p><strong>Answer:</strong> {answer}</p>}
+      </div>
+     <div className="inputandbutton">  
+      
+      <div className="inputbox"><input 
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Ask a question..."
-       
       />
-      <button onClick={handleQuery} style={{ marginLeft: '1rem', padding: '8px' }}>
-        Ask
-      </button>
-      <div >
-        {loading ? <p>Loading...</p> : <p><strong>Answer:</strong> {answer}</p>}
       </div>
+      
+      
+      <div className="button">
+        <button onClick={handleQuery}  >
+         ASK
+        </button>
+      
+      </div> 
+      
+      
+      </div>
+      
+
+
     </div>
   );
 };

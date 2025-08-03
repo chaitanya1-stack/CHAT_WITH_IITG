@@ -15,7 +15,8 @@ load_dotenv()
 
 #  Load documents
 
-pdfs = ["../docs/Acad_Calendar_2025.pdf"]
+pdfs = ["../docs/Acad_Calendar_2025.pdf", "../docs/BAJHLIP23020V012223.pdf","../docs/CHOTGDP23004V012223.pdf","../docs/EDLHLGA23009V012223.pdf","../docs/HDFHLIP23024V072223.pdf","../docs/ICIHLIP22012V012223.pdf"]
+
 pdf_docs = []
 for pdf in pdfs:
     pdf_docs.extend(PyMuPDFLoader(pdf).load())  

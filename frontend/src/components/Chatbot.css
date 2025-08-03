@@ -1,241 +1,97 @@
-:root {
-  --bg: #F6F6F6;
-  --chatbot: #3D3E45;
-}
-
-* {
-  margin: 0 auto;
-  -webkit-user-select: none;
-}
-
 body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background: var(--bg);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  /* Or for a richer blue/black combo: */
+  /* background: linear-gradient(135deg, #000000, #0f2027, #2c5364); */
+
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.container {
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-  margin: auto;
-  height: 500px;
-  width: 500px;
-  animation: up-down 7.5s infinite ease-in-out;
+input[type="text"],
+textarea {
+  all: unset; 
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #ffffff;
+
+  
+ 
+
 }
 
-#chatbot {
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-  margin: auto;
-  width: 150px;
-  height: 85px;
-  border: 12px solid var(--chatbot);
-  border-radius: 5rem;
+
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15); /* subtle dark overlay */
+  z-index: -1;
 }
 
-#chatbot-corner {
-  position: absolute;
-  top: 105px;
-  left: -65px;
-  margin: auto;
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 25px solid var(--chatbot);
-  transform: rotate(140deg);
+
+
+.header{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bolder;
+    color: #e0c9ff;
+   border: 1px solid rgba(255, 255, 255, 0.4);
+   border-radius: 30px;
+   padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Optional subtle shadow */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-#antenna {
-  position: absolute;
-  top: -125px;
-  left: 0; right: 0;
-  margin: auto;
-  height: 20px;
-  width: 10px;
-  background-color: var(--chatbot);
-  animation: antenna-appear 7.5s infinite ease-in-out;
+.inputandbutton {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 10px;
+  background: transparent;
+  backdrop-filter: blur(6px); /* optional for glass look */
+  border-radius: 12px;         /* optional */
 }
 
-#beam, #beam-pulsar {
-  position: absolute;
-  top: -12.5px;
-  left: -5px;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background-color: var(--chatbot);
+
+button{
+     all: unset; 
 }
 
-#beam {
-  animation: beam-appear 7.5s infinite ease-in-out;
+.inputbox{
+    width: 86%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    padding: 30px;
 }
 
-#beam-pulsar {
-  animation: beam-pulsar-appear 7.5s infinite ease-in-out;
-}
-
-.dot {
-  height: 17.5px;
-  width: 17.5px;
-  position: absolute;
-  top: 0; bottom: 0;
-  margin: auto;
-  background-color: var(--chatbot);
-  border-radius: 50%;
-  animation: pulse-outer 7.5s infinite ease-in-out;
-}
-
-.dot:nth-child(2) {
-  left: 0;
-  animation: pulse-inner 7.5s infinite ease-in-out;
-  animation-delay: 0.2s;
-}
-
-.dot:nth-child(3) {
-  left: 65px;
-  animation-delay: 0.4s;
-}
-
-@keyframes pulse-inner {
-  0% { transform: scale(1); }
-  7.5% { transform: scale(1.5); }
-  15% { transform: scale(1); }
-  22.5% { transform: scale(1.5); }
-  30% { transform: scale(1); }
-  37.5% { transform: scale(1.5); }
-  45% {
-    top: 0;
-    transform: scale(1);
-    height: 17.5px;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    transform: rotate(-370deg);
-  }
-  50% {
-    top: 22.5px;
-    height: 10px;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 3rem;
-    border-bottom-right-radius: 3rem;
-    transform: rotate(10deg);
-  }
-  55% { transform: rotate(-10deg); }
-  60% { transform: rotate(10deg); }
-  65% { transform: rotate(-10deg); }
-  70% { transform: rotate(0deg); }
-  85% {
-    top: 22.5px;
-    height: 10px;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 3rem;
-    border-bottom-right-radius: 3rem;
-  }
-  92.5% {
-    top: 22.5px;
-    height: 10px;
-    border-radius: 2.5rem;
-  }
-  100% {
-    top: 0;
-    height: 17.5px;
-    border-radius: 50%;
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes pulse-outer {
-  0%, 15%, 30%, 45%, 60%, 75%, 100% {
-    transform: scale(1);
-    height: 17.5px;
-  }
-  7.5%, 22.5%, 37.5% {
-    transform: scale(1.5);
-  }
-  55%, 80% {
-    height: 5px;
-  }
-}
-
-@keyframes antenna-appear {
-  0%, 50% {
-    visibility: hidden;
-    top: -100px;
-    height: 0;
-  }
-  55%, 95% {
-    visibility: visible;
-    top: -125px;
-    height: 20px;
-  }
-  100% {
-    top: -100px;
-    height: 0;
-  }
-}
-
-@keyframes beam-appear {
-  0%, 50% {
-    visibility: hidden;
-    height: 0;
-  }
-  55%, 100% {
-    visibility: visible;
-    height: 20px;
-    width: 20px;
-  }
-}
-
-@keyframes beam-pulsar-appear {
-  0%, 50% {
-    visibility: hidden;
-    height: 0;
-  }
-  55% {
-    visibility: visible;
-    top: -12.5px;
-    left: -5px;
-    height: 20px;
-    width: 20px;
-    opacity: 1;
-  }
-  65% {
-    top: -25px;
-    left: -15px;
-    height: 40px;
-    width: 40px;
-    opacity: 0;
-  }
-  74% { visibility: hidden; opacity: 0; }
-  75% {
-    visibility: visible;
-    top: -12.5px;
-    left: -5px;
-    height: 20px;
-    width: 20px;
-    opacity: 1;
-  }
-  85% {
-    top: -25px;
-    left: -15px;
-    height: 40px;
-    width: 40px;
-    opacity: 0;
-  }
-  94%, 100% {
-    visibility: hidden;
-    opacity: 0;
-  }
-}
-
-@keyframes up-down {
-  0%, 25%, 50%, 75%, 100% {
-    transform: translate(0);
-  }
-  12.5%, 37.5%, 62.5%, 87.5% {
-    transform: translate(0, 2%);
-  }
+.button{
+     border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.4);
 }
